@@ -1,0 +1,75 @@
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-wrapper">
+                    <div class="blog-top clearfix">
+                        <h4 class="pull-left">Noticias recientes <a href="#"><i class="fa fa-rss"></i></a></h4>
+                        <small class="blog-meta big-meta col-md-8 firstsmall margin">
+                            <a class="bg-orange hand" (click)="orderingByTittle()">Ordenar por título</a>
+                        </small>
+                    </div><!-- end blog-top -->
+
+                    <div class="blog-list clearfix">
+                        <div *ngFor="let news of listNews" class="blog-box row">
+                            <div class="col-md-4">
+                                <div class="post-media">
+                                    <a>
+                                        <img [src]="news.image_url" alt="" class="img-fluid">
+                                        <div class="hovereffect"></div>
+                                    </a>
+                                </div><!-- end media -->
+                            </div><!-- end col -->
+
+                            <div class="blog-meta big-meta col-md-8">
+                                <h4><a>{{ news.tite }}</a></h4>
+                                <p>{{ news.summary }}</p>
+                                <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">Gadgets</a></small>
+                                <small><a href="tech-single.html" title="">{{ news.published_at | date:'dd MM yyyy' }}</a></small>
+                                <small><a href="tech-author.html" title="">{{ news.news_site }}</a></small>
+                            </div><!-- end meta -->
+                        </div><!-- end blog-box -->
+
+                        <hr class="invis">
+
+                    </div><!-- end blog-list -->
+                </div><!-- end page-wrapper -->
+
+                <hr class="invis">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-start">
+                                <li class="page-item">
+                                    <a class="page-link" (click)="getNews(previous)">Anterior</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" (click)="getNews(next)">Siguiente</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end col -->
+
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <div class="sidebar">
+                    <div class="widget">
+                        <h2 class="widget-title">Buscar Noticias</h2>
+                        <div class="navbar-news mr-2">
+                            <div class="newsletter-widget text-left">
+                                <form>
+                                    <input type="text" #input (keyup)="searchNews(input.value)" class="form-control" placeholder="Ingrese una noticia a buscar">
+                                </form>
+                            </div><!-- end banner-img -->
+                        </div><!-- end banner -->
+                    </div><!-- end widget -->
+
+
+
+                </div><!-- end sidebar -->
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
