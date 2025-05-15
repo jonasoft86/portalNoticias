@@ -7,25 +7,29 @@
                         <h4 class="pull-left">Noticias favoritas <a href="#"><i class="fa fa-rss"></i></a></h4>
                     </div><!-- end blog-top -->
 
+                    <div class="alert alert-primary" role="alert" *ngIf="listNews.length === 0">
+                        <strong>¡Atención!</strong> No tienes noticias favoritas.
+                    </div>
+
                     <div class="blog-list clearfix">
-                        <div class="blog-box row">
+                        <div *ngFor="let news of listNews" class="blog-box row">
                             <div class="col-md-4">
                                 <div class="post-media">
-                                    <a href="tech-single.html" title="">
-                                        <img src="upload/tech_blog_01.jpg" alt="" class="img-fluid">
+                                    <a title="">
+                                        <img [src]="news.image_url" alt="" class="img-fluid">
                                         <div class="hovereffect"></div>
                                     </a>
                                 </div><!-- end media -->
                             </div><!-- end col -->
 
                             <div class="blog-meta big-meta col-md-8">
-                                <h4><a href="tech-single.html" title="">Top 10 phone applications and 2017 mobile design awards</a></h4>
-                                <p>Aenean interdum arcu blandit, vehicula magna non, placerat elit. Mauris et pharetratortor. Suspendissea sodales urna. In at augue elit. Vivamus enim nibh, maximus ac felis nec, maximus tempor odio.</p>
-                                <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">Gadgets</a></small>
-                                <small><a href="tech-single.html" title="">21 July, 2017</a></small>
-                                <small><a href="tech-author.html" title="">by Matilda</a></small>
-                                <small><a href="tech-single.html" title=""><i class="fa fa-eye"></i> 1114</a></small>
-                            </div><!-- end meta -->
+                                <h4><a title="">{{ news.title}}</a></h4>
+                                <p> {{news.summary}}</p>
+                                <small class="firstsmall hand"><a class="bg-orange" title="" (click)="deleteFavorite(news.id)">Eliminar de Favoritos</a></small>
+                                <small><a title="">{{ news.publishedAt | date:'dd MMM yyyy' }}</a></small>
+                                <small><a title="">{{ news.new_site}}</a></small>
+                                <small><a title="">Guardada en {{ news.savedAt | date:'dd MMM yyyy' }}</a></small>
+                     </div><!-- end meta -->
                         </div><!-- end blog-box -->
 
                         <hr class="invis">
@@ -39,33 +43,28 @@
                     <div class="col-md-12">
                         <nav aria-label="Page navigation">
                             <ul class="pagination justify-content-start">
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
                                 <li class="page-item">
-                                    <a class="page-link" href="#">Next</a>
+                                    <a class="page-link" (click)="getFavorites(previous)">Anterior</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" (click)="getFavorites(next)">Siguiente</a>
                                 </li>
                             </ul>
                         </nav>
                     </div><!-- end col -->
                 </div><!-- end row -->
+
             </div><!-- end col -->
 
             <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
                 <div class="sidebar">
                     <div class="widget">
-                        <div class="banner-spot clearfix">
-                            <div class="banner-img">
-                                <img src="upload/banner_07.jpg" alt="" class="img-fluid">
-                            </div><!-- end banner-img -->
-                        </div><!-- end banner -->
-                    </div><!-- end widget -->
-
-
-                    <div class="widget">
-                        <div class="banner-spot clearfix">
-                            <div class="banner-img">
-                                <img src="upload/banner_03.jpg" alt="" class="img-fluid">
+                        <h2 class="widget-title">Buscar Noticias</h2>
+                        <div class="navbar-news mr-2">
+                            <div class="newsletter-widget text-left">
+                                <form>
+                                    <input type="text" #input (keyup)="searchFavorite(input.value)" class="form-control" placeholder="Ingrese una noticia a buscar">
+                                </form>
                             </div><!-- end banner-img -->
                         </div><!-- end banner -->
                     </div><!-- end widget -->

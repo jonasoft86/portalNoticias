@@ -22,9 +22,9 @@
                             </div><!-- end col -->
 
                             <div class="blog-meta big-meta col-md-8">
-                                <h4><a>{{ news.tite }}</a></h4>
+                                <h4><a>{{ news.title }}</a></h4>
                                 <p>{{ news.summary }}</p>
-                                <small class="firstsmall"><a class="bg-orange" href="tech-category-01.html" title="">Gadgets</a></small>
+                                <small class="firstsmall"><a class="bg-orange" (click)="addFavorite(news.id)" title="">Agregar a Favoritos</a></small>
                                 <small><a href="tech-single.html" title="">{{ news.published_at | date:'dd MM yyyy' }}</a></small>
                                 <small><a href="tech-author.html" title="">{{ news.news_site }}</a></small>
                             </div><!-- end meta -->
@@ -65,9 +65,6 @@
                             </div><!-- end banner-img -->
                         </div><!-- end banner -->
                     </div><!-- end widget -->
-
-
-
                 </div><!-- end sidebar -->
             </div><!-- end col -->
         </div><!-- end row -->
